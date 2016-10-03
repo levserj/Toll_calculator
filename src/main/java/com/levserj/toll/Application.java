@@ -2,8 +2,6 @@ package com.levserj.toll;
 
 
 import com.levserj.toll.domain.TripHandler;
-import com.levserj.toll.repository.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +13,13 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by Serhii Levchynskyi on 01.10.2016.
+ *
+ * run() method of this class creates ServerSocket to listen for
+ * connections on the port you specify as the first argument and
+ * ThreadPool with number of threads equal to second argument;
  */
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-
-    @Autowired
-    private UserRepo repo;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -36,9 +35,16 @@ public class Application implements CommandLineRunner {
         int threadsNumber = Integer.parseInt(strings[1]);
         ExecutorService pool = null;
 
+
+
         try(ServerSocket serverSocket = new ServerSocket(portNumber)){
             pool = Executors.newFixedThreadPool(threadsNumber);
-            System.out.println("Server is online");
+            System.out.println(String.format("Server is online and listening on the port %d", portNumber));
+            /**
+             * Infinite loop creates Socket accepting connection and
+             * passes it as an argument to new Runnable object TripHandler.
+             * Runnable passed to one of the threads in the pool for execution.
+             */
             while (true){
                 Socket client = serverSocket.accept();
                 Runnable worker = new TripHandler(client);

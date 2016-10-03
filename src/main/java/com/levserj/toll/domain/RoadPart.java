@@ -13,6 +13,12 @@ public class RoadPart {
     public RoadPart() {
     }
 
+    public RoadPart(int startPoint, int endPoint, float passPrice) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.passPrice = passPrice;
+    }
+
     public RoadPart(String id, int startPoint, int endPoint, float passPrice) {
         this.id = id;
         this.startPoint = startPoint;
