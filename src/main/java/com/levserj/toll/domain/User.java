@@ -1,11 +1,17 @@
 package com.levserj.toll.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Serhii Levchynskyi on 01.10.2016.
  */
 public class User {
     private String id;
     private String Email;
+    private String firstName;
+    private String lastName;
+    private List<Trip> trips;
 
     public User() {
     }
@@ -35,6 +41,32 @@ public class User {
         this.Email = email;
     }
 
+    public List<Trip> getTrips() {
+        if (trips == null){
+            return new ArrayList<>();
+        }
+        return trips;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
 
     @Override
     public boolean equals(Object o) {

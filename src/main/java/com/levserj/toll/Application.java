@@ -1,7 +1,7 @@
 package com.levserj.toll;
 
 
-import com.levserj.toll.domain.Trip;
+import com.levserj.toll.domain.TripHandler;
 import com.levserj.toll.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -41,7 +41,7 @@ public class Application implements CommandLineRunner {
             System.out.println("Server is online");
             while (true){
                 Socket client = serverSocket.accept();
-                Runnable worker = new Trip(client);
+                Runnable worker = new TripHandler(client);
                 pool.execute(worker);
             }
         } catch (Exception e){
