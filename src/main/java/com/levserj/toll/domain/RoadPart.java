@@ -2,6 +2,9 @@ package com.levserj.toll.domain;
 
 /**
  * Created by Serhii Levchynskyi on 02.10.2016.
+ *
+ * This bean represents part of the road, between two checkpoints,
+ * with the price to pass this part.
  */
 public class RoadPart {
 
@@ -56,5 +59,24 @@ public class RoadPart {
 
     public void setPassPrice(float passPrice) {
         this.passPrice = passPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RoadPart roadPart = (RoadPart) o;
+
+        if (getStartPoint() != roadPart.getStartPoint()) return false;
+        return getEndPoint() == roadPart.getEndPoint();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStartPoint();
+        result = 31 * result + getEndPoint();
+        return result;
     }
 }

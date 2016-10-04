@@ -8,7 +8,6 @@ import org.junit.Test;
  */
 public class EmailSenderTest {
 
-
     private EmailSender emailSender = new EmailSender();
 
     @Ignore

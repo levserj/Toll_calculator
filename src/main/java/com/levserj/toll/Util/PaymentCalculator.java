@@ -3,12 +3,14 @@ package com.levserj.toll.Util;
 import com.levserj.toll.domain.RoadPart;
 import com.levserj.toll.repository.RoadPartRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created by Serhii Levchynskyi on 02.10.2016.
  */
+@Component
 public class PaymentCalculator {
 
     @Autowired
