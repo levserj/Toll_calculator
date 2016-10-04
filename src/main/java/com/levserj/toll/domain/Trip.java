@@ -1,5 +1,7 @@
 package com.levserj.toll.domain;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
 /**
@@ -7,9 +9,9 @@ import java.util.List;
  *
  * Bean to maintain the history of the clients trip in the DB.
  */
+@Document
 public class Trip {
 
-    private String id;
     private List<Integer> checkpoints;
     private Float payment;
     private String dateAndTime;
@@ -47,11 +49,13 @@ public class Trip {
         this.dateAndTime = dateAndTime;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "dateAndTime='" + dateAndTime + '\'' +
+                ", payment=" + payment +
+                ", checkpoints=" + checkpoints +
+                '}';
     }
 }

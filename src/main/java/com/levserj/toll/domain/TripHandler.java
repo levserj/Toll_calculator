@@ -3,7 +3,11 @@ package com.levserj.toll.domain;
 import com.levserj.toll.Util.EmailSender;
 import com.levserj.toll.Util.PaymentCalculator;
 import com.levserj.toll.repository.UserRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,8 +25,10 @@ import java.util.List;
  * from the checkpoints. Receives Socket in the constructor and
  * reads necessary data.
  */
+@Component()
+@Scope("prototype")
 public class TripHandler implements Runnable {
-
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private Socket client;
 
     @Autowired
@@ -36,8 +42,7 @@ public class TripHandler implements Runnable {
         this.client = client;
     }
 
-    public TripHandler() {
-    }
+    public TripHandler(){}
 
     @Override
     public void run() {
@@ -56,6 +61,10 @@ public class TripHandler implements Runnable {
                 String clientId = inputStr[0];
                 checkPointNum = Integer.parseInt(inputStr[1]);
                 leftPaidZone = Boolean.parseBoolean(inputStr[2]);
+                log.info("--- ClientID : " + clientId);
+                log.info("--- ChackpointsNum : " + checkPointNum);
+                log.info("--- Left Paid Zone : " + leftPaidZone);
+                log.info(userRepo.toString());
                 // Get the Sessions map
                 HashMap<String, List<Integer>> sessions = Session.INSTANCE.getSessions();
                 // Before putting new clients trip info in the map, new list of checkpoints should be created
@@ -80,7 +89,10 @@ public class TripHandler implements Runnable {
                     // Trip object for this trip is created
                     Trip trip = new Trip(checkpoints, payment, dateAndTime);
                     // Trip is saved to DB through user list of trips
-                    user.getTrips().add(trip);
+                    List<Trip> trips = user.getTrips();
+                    log.info(trips.toString());
+                    trips.add(trip);
+                    log.info(user.toString());
                     userRepo.save(user);
                     // Send an email to the user
                     emailSender.sendInvoice(user, trip);

@@ -10,6 +10,10 @@ public class EmailSenderTest {
 
     private EmailSender emailSender = new EmailSender();
 
+    /**
+     * Tested with my email, works fine.
+     * Ignored cuase won't work without my credentials
+     */
     @Ignore
     @Test
     public void sendMyselfEmail(){

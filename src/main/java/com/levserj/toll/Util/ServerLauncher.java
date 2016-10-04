@@ -3,7 +3,9 @@ package com.levserj.toll.Util;
 import com.levserj.toll.domain.TripHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.net.ServerSocket;
@@ -21,6 +23,10 @@ import java.util.concurrent.Executors;
  */
 @Component
 public class ServerLauncher implements CommandLineRunner {
+
+    @Autowired
+    private ApplicationContext ctx;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -47,7 +53,7 @@ public class ServerLauncher implements CommandLineRunner {
              */
             while (true){
                 Socket client = serverSocket.accept();
-                Runnable worker = new TripHandler(client);
+                Runnable worker = ctx.getBean(TripHandler.class, client);
                 pool.execute(worker);
             }
         } catch (Exception e){
