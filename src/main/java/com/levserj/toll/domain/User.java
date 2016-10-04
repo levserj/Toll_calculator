@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Created by Serhii Levchynskyi on 01.10.2016.
+ *
+ * User bean with simple fields, also containing a list of trips.
  */
 public class User {
     private String id;

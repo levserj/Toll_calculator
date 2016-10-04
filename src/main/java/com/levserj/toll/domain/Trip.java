@@ -4,6 +4,8 @@ import java.util.List;
 
 /**
  * Created by Serhii Levchynskyi on 03.10.2016.
+ *
+ * Bean to maintain the history of the clients trip in the DB.
  */
 public class Trip {
 

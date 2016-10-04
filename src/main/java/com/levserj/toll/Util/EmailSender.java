@@ -14,6 +14,10 @@ import java.util.Properties;
 
 /**
  * Created by Serhii Levchynskyi on 02.10.2016.
+ *
+ * Sends email to the user, using SimpleJavaEmail library.
+ * In this example Gmail account is used, only "username" and
+ * "password" in Mailer constructor need to be replaced with proper values.
  */
 @Component
 public class EmailSender {
@@ -28,6 +32,7 @@ public class EmailSender {
         String dateAndTime = trip.getDateAndTime();
         Float payment = trip.getPayment();
         Email email = new Email();
+        // Needed to work with G, didn't find another way to set this property
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", true);
         email.setFromAddress("Paid Roads Company", "prc@gmail.com");

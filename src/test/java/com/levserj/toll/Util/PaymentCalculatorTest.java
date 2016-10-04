@@ -34,6 +34,9 @@ public class PaymentCalculatorTest {
      * This test is ignored, cause I didn't manage to exclude
      * CommandLineRunner from the context of the test, and
      * the test doesn't run because of while(true) loop in that class.
+     * If the port is occupied (App is already running), new instance of
+     * ServerLauncher fails to listen the same port,
+     * while(true) is broken with Exception and test passes.
      */
     @Ignore
     @Test

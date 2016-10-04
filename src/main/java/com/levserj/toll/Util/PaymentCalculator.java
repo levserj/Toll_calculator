@@ -9,6 +9,9 @@ import java.util.List;
 
 /**
  * Created by Serhii Levchynskyi on 02.10.2016.
+ *
+ * Simple util class, which searches DB for all the RoadParts
+ * according to checkpoints list, sums up and returns their Passprices.
  */
 @Component
 public class PaymentCalculator {
