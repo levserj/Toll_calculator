@@ -1,7 +1,8 @@
-package com.levserj.toll.domain;
+package com.levserj.toll.util;
 
-import com.levserj.toll.Util.EmailSender;
-import com.levserj.toll.Util.PaymentCalculator;
+import com.levserj.toll.domain.Session;
+import com.levserj.toll.domain.Trip;
+import com.levserj.toll.domain.User;
 import com.levserj.toll.repository.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

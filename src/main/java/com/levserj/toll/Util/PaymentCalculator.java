@@ -1,4 +1,4 @@
-package com.levserj.toll.Util;
+package com.levserj.toll.util;
 
 import com.levserj.toll.domain.RoadPart;
 import com.levserj.toll.repository.RoadPartRepo;

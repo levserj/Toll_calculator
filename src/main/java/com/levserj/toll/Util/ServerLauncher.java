@@ -1,6 +1,5 @@
-package com.levserj.toll.Util;
+package com.levserj.toll.util;
 
-import com.levserj.toll.domain.TripHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

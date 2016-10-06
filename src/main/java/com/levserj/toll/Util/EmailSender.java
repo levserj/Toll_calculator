@@ -1,4 +1,4 @@
-package com.levserj.toll.Util;
+package com.levserj.toll.util;
 
 import com.levserj.toll.domain.Trip;
 import com.levserj.toll.domain.User;
